@@ -42,10 +42,12 @@ export async function POST(
     })
   ).docs[0]
   const stage = archetype?.growthStages?.find((s) => s.stage === result.newStage)
+  const maxStage = Math.max(0, ...(archetype?.growthStages ?? []).map((s) => s.stage))
 
   return Response.json({
     archetype: archetype ? { slug: archetype.slug, name: archetype.name } : null,
     advanced: result.advanced,
+    isFinalStage: result.advanced && result.newStage === maxStage,
     stage: stage ? { title: stage.title, description: stage.description } : null,
     poetic: {
       votes: formatPoeticNumber(result.summary.totalVotes, 'votes'),

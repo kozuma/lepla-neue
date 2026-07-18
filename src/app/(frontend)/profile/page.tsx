@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { Card, CardContent } from '@/components/ui/Card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
 import { useJourney } from '@/lib/hooks'
 
 export default function ProfilePage() {
@@ -75,6 +75,29 @@ export default function ProfilePage() {
           <p className="text-base text-primary">{poetic?.since}</p>
         </Card>
       </div>
+
+      {/* 最近の足あと(日付と言葉のみ。数値は出さない) */}
+      <Card className="mb-8">
+        <CardHeader>
+          <CardTitle className="text-base">最近の足あと</CardTitle>
+        </CardHeader>
+        <CardContent>
+          {!journey.footprints || journey.footprints.length === 0 ? (
+            <p className="text-sm text-secondary">
+              まだ足あとがありません。今日の一歩から始めましょう。
+            </p>
+          ) : (
+            <ul className="divide-y divide-line">
+              {journey.footprints.map((footprint, index) => (
+                <li key={index} className="flex items-center justify-between py-3">
+                  <span className="text-sm text-primary">{footprint.label}</span>
+                  <span className="text-xs text-secondary">{footprint.date}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </CardContent>
+      </Card>
 
       {/* 道の描写(儀式的) */}
       <Card>

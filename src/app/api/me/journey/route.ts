@@ -1,7 +1,7 @@
-import { getPrimaryArchetype } from '@/db/journey'
+import { getPrimaryArchetype, getRecentVotes } from '@/db/journey'
 import { getUserId } from '@/lib/auth'
 import { getPayloadClient } from '@/lib/payload'
-import { buildJourneyNarrative } from '@/services/narrative'
+import { buildFootprints, buildJourneyNarrative } from '@/services/narrative'
 
 /**
  * ホーム/プロフィール用。返すのは物語層のみ(設計書 §7)
@@ -22,6 +22,7 @@ export async function GET() {
   ).docs[0]
   if (!archetype) return Response.json({ error: 'archetype_not_found' }, { status: 500 })
 
+  const recentVotes = await getRecentVotes(userId, journey.archetypeId)
   const narrative = buildJourneyNarrative(
     {
       archetypeId: journey.archetypeId,
@@ -34,5 +35,9 @@ export async function GET() {
     archetype,
     new Date(),
   )
-  return Response.json({ onboardingCompleted: true, ...narrative })
+  return Response.json({
+    onboardingCompleted: true,
+    ...narrative,
+    footprints: buildFootprints(recentVotes),
+  })
 }

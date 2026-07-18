@@ -4,8 +4,36 @@
  * 生の投票数・strength・しきい値は返さない。
  */
 import type { Archetype } from '@/payload-types'
+import type { VoteAction } from '@/types/vote'
 
 import { formatPoeticNumber } from './voting'
+
+/**
+ * 足あとの物語的ラベル(action → 言葉)。日付とこの言葉だけを露出し、数値は出さない
+ */
+const FOOTPRINT_LABELS: Record<VoteAction, string> = {
+  daily_study: '学びを重ねた',
+  deep_engagement: '深く学び込んだ',
+  return_after_break: '休息ののち戻った',
+  explore_new_topic: '新たな書物を開いた',
+  review_old_material: '学びを確かめ直した',
+  complete_deck: '一冊を修めた',
+  consistent_week: '七日の道を歩み通した',
+}
+
+export interface Footprint {
+  date: string // 「7月18日」
+  label: string // 「学びを重ねた」
+}
+
+export function buildFootprints(
+  votes: { action: VoteAction; createdAt: Date }[],
+): Footprint[] {
+  return votes.map((v) => ({
+    date: `${v.createdAt.getMonth() + 1}月${v.createdAt.getDate()}日`,
+    label: FOOTPRINT_LABELS[v.action] ?? FOOTPRINT_LABELS.daily_study,
+  }))
+}
 
 export interface JourneyState {
   archetypeId: string

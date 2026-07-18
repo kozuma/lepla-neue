@@ -63,14 +63,25 @@ export function StudyCompletion({ deckId, result, onRestart }: StudyCompletionPr
         <h1 className="text-ceremonial text-2xl text-primary mb-6">今日の歩みを納めたり</h1>
         <p className="text-ceremonial text-sm text-secondary mb-16">{completionMessage}</p>
 
-        {/* 昇格(称号の授与)は物語で伝える(設計書 §5.3) */}
+        {/* 昇格(称号の授与)は物語で伝える(設計書 §5.3)。最終段階は特別な言葉で */}
         {result?.advanced && result.stage && (
           <div className="mb-16">
-            <p className="text-latin-label mb-4">A New Chapter</p>
+            <p className="text-latin-label mb-4">
+              {result.isFinalStage ? 'The Final Chapter' : 'A New Chapter'}
+            </p>
             <p className="text-ceremonial text-lg text-primary mb-2">
-              汝はいま、「{result.stage.title}」となりたり
+              {result.isFinalStage
+                ? `汝はついに、「${result.stage.title}」の名を戴きたり`
+                : `汝はいま、「${result.stage.title}」となりたり`}
             </p>
             <p className="text-ceremonial text-sm text-secondary">{result.stage.description}</p>
+            {result.isFinalStage && (
+              <p className="text-ceremonial mt-4 text-sm text-secondary">
+                長き道のりの果てに、ひとつの姿が結ばれたり。
+                <br />
+                されど学びの旅に、終わりはあらず。
+              </p>
+            )}
           </div>
         )}
 

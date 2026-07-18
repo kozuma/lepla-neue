@@ -50,11 +50,13 @@ export interface JourneyResponse {
   stage?: { title: string; description: string; milestone: string }
   poetic?: { votes: string; streak: string; since: string }
   hasWalkedToday?: boolean
+  footprints?: { date: string; label: string }[]
 }
 
 export interface SessionCompleteResponse {
   archetype: { slug: string; name: string } | null
   advanced: boolean
+  isFinalStage: boolean
   stage: { title: string; description: string } | null
   poetic: { votes: string; streak: string }
 }

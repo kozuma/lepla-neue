@@ -38,11 +38,16 @@
 - [x] Supabase Auth 実配線: ログイン/サインアップ画面・middleware(セッション更新 + 未ログインリダイレクト)・Header ログアウト・401時の /login 誘導。環境変数が無いローカルは従来どおり開発ユーザー
 - [x] カード本レンダリング: `services/template.ts`(`{{variable}}` 展開・値エスケープ、テスト付き)→ 裏面はテンプレートHTML描画
 - [x] explorer(探検家)/ sage(賢者)を追加(**定義文言は原案。Hiroshi のレビューで確定させる** → `scripts/seed-data/archetypes.ts`)
-- [ ] 本番反映(Hiroshi の作業。手順は `docs/DEPLOY.md`): Vercel 環境変数設定 → 本番DBマイグレーション・シード → Supabase Site URL 設定
+- [x] 本番反映完了 (2026-07-18): Vercel + Supabase で稼働、登録→学習一巡を本番確認済み
 
-## Phase 4 以降(仮)
+## Phase 4: VoteAction 拡充 + 足あと + 最終段階演出 — ✅ 完了 (2026-07-18)
 
-- [ ] Cloudflare R2 + Images 接続(デッキ画像)
-- [ ] Stage 2 への成長演出、神秘的なヒント、VoteAction 拡充(deep_engagement / complete_deck 等)
-- [ ] 投票履歴の露出設計(profile「最近の足あと」)
+- [x] VoteAction の自動判定(`determineVoteAction`。発火条件は内部秘匿): consistent_week(ストリーク7到達)/ deep_engagement(20分+全裏返し)/ return_after_break(3日以上の休息)/ explore_new_topic(初デッキ)/ review_old_material(7日以上あいだを置いた再訪)/ daily_study(既定)
+- [x] 「最近の足あと」露出(二層構造準拠: 日付 + action 由来の物語的ラベルのみ)。journey API + 旅の記録画面
+- [x] 最終段階到達の特別演出(「汝はついに、『◯◯』の名を戴きたり」)
+
+## Phase 5 以降(仮)
+
+- [ ] Cloudflare R2 + Images 接続(デッキ画像。Cloudflare 登録待ち)
+- [ ] 神秘的なヒント(「何かが近づいている…」)
 - [ ] レアアーキタイプ(解放条件は秘匿)、複数アーキタイプ保有、ジャーナル(設計書 Phase 3)

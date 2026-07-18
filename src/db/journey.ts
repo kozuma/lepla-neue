@@ -3,12 +3,16 @@
  * Route Handler から呼ばれ、純粋関数(services/)と DB を繋ぐ。
  * 計算ロジックはここに書かず、services/ に置いてテストする(憲法 §5)。
  */
-import { and, eq } from 'drizzle-orm'
+import { and, desc, eq, isNotNull } from 'drizzle-orm'
 
 import { db } from '@/db'
 import { identityVotes, studySessions, userArchetypes } from '@/db/schema'
 import { calculateGrowthProgress, deriveVoteParams, summarizeVotes } from '@/services/session'
-import { adjustStrengthByAction, calculateVoteStrength } from '@/services/voting'
+import {
+  adjustStrengthByAction,
+  calculateVoteStrength,
+  determineVoteAction,
+} from '@/services/voting'
 
 export async function getPrimaryArchetype(userId: string) {
   const rows = await db
@@ -123,8 +127,47 @@ export async function completeSession(
     },
     isConsecutiveDay,
   )
-  // Phase 1 は daily_study のみ(設計書 §10)
-  const strength = adjustStrengthByAction(calculateVoteStrength(params), 'daily_study')
+
+  // アクション判定の文脈: 直前の投票日・このデッキの学習履歴(設計書 §4.1)
+  const startOfDay = (d: Date) => new Date(d.getFullYear(), d.getMonth(), d.getDate()).getTime()
+  const dayMs = 24 * 60 * 60 * 1000
+  const lastVoteAt = voteRecords.reduce<Date | null>(
+    (latest, v) => (!latest || v.createdAt > latest ? v.createdAt : latest),
+    null,
+  )
+  const priorDeckSessions = await db
+    .select({ endedAt: studySessions.endedAt })
+    .from(studySessions)
+    .where(
+      and(
+        eq(studySessions.userId, userId),
+        eq(studySessions.deckId, session.deckId),
+        isNotNull(studySessions.endedAt),
+      ),
+    )
+  const deckLastStudiedAt = priorDeckSessions.reduce<Date | null>(
+    (latest, s) => (s.endedAt && (!latest || s.endedAt > latest) ? s.endedAt : latest),
+    null,
+  )
+
+  const preliminarySummary = summarizeVotes(
+    [...voteRecords, { strength: 1, createdAt: now }],
+    now,
+  )
+  const action = determineVoteAction({
+    streakAfterVote: preliminarySummary.currentStreak,
+    daysSinceLastVote: lastVoteAt
+      ? Math.round((startOfDay(now) - startOfDay(lastVoteAt)) / dayMs)
+      : null,
+    isFirstTimeDeck: priorDeckSessions.length === 0,
+    daysSinceDeckLastStudied: deckLastStudiedAt
+      ? Math.round((startOfDay(now) - startOfDay(deckLastStudiedAt)) / dayMs)
+      : null,
+    sessionMinutes: params.sessionDuration,
+    cardsStudied: input.cardsStudied,
+    flippedCards: input.flippedCards,
+  })
+  const strength = adjustStrengthByAction(calculateVoteStrength(params), action)
 
   const allVotes = [...voteRecords, { strength, createdAt: now }]
   const summary = summarizeVotes(allVotes, now)
@@ -148,7 +191,7 @@ export async function completeSession(
     await tx.insert(identityVotes).values({
       userId,
       archetypeId: journey.archetypeId,
-      action: 'daily_study',
+      action,
       strength: strength.toFixed(2),
       metadata: {
         deckId: session.deckId,
@@ -189,4 +232,16 @@ export async function completeSession(
       currentStreak: summary.currentStreak,
     },
   }
+}
+
+/**
+ * 最近の足あと(直近の投票の action と日時)。露出は物語層(日付+言葉)に限る
+ */
+export async function getRecentVotes(userId: string, archetypeId: string, limit = 10) {
+  return db
+    .select({ action: identityVotes.action, createdAt: identityVotes.createdAt })
+    .from(identityVotes)
+    .where(and(eq(identityVotes.userId, userId), eq(identityVotes.archetypeId, archetypeId)))
+    .orderBy(desc(identityVotes.createdAt))
+    .limit(limit)
 }
