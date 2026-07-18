@@ -8,6 +8,7 @@ import type { StudyCard as Card } from '@/types/content'
 
 interface CardViewerProps {
   card: Card
+  template?: { content: string } | null
   cardIndex: number
   totalCards: number
   isFlipped: boolean
@@ -21,6 +22,7 @@ interface CardViewerProps {
 
 export function CardViewer({
   card,
+  template,
   cardIndex,
   totalCards,
   isFlipped,
@@ -80,6 +82,7 @@ export function CardViewer({
         <div className="relative w-full max-w-2xl">
           <CardFace
             card={card}
+            template={template}
             isFlipped={isFlipped}
             onClick={handleFlip}
             isAnimating={isAnimating}

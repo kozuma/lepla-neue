@@ -6,6 +6,8 @@
  */
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
+import { isSupabaseEnabled } from '@/lib/supabase/client'
+
 import type {
   ArchetypeContent,
   DeckDetail,
@@ -20,6 +22,9 @@ async function fetchJson<T>(url: string, init?: RequestInit): Promise<T> {
     ...init,
     headers: { 'Content-Type': 'application/json', ...init?.headers },
   })
+  if (res.status === 401 && isSupabaseEnabled() && typeof window !== 'undefined') {
+    window.location.href = '/login'
+  }
   if (!res.ok) throw new Error(`${url} -> ${res.status}`)
   return res.json() as Promise<T>
 }

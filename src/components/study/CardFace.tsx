@@ -7,13 +7,14 @@ import type { StudyCard as Card } from '@/types/content'
 
 interface CardFaceProps {
   card: Card
+  template?: { content: string } | null
   isFlipped: boolean
   onClick: () => void
   isAnimating: boolean
   className?: string
 }
 
-export function CardFace({ card, isFlipped, onClick, isAnimating, className }: CardFaceProps) {
+export function CardFace({ card, template, isFlipped, onClick, isAnimating, className }: CardFaceProps) {
   return (
     <div
       className={cn('group perspective-1000 relative cursor-pointer', className)}
@@ -37,7 +38,7 @@ export function CardFace({ card, isFlipped, onClick, isAnimating, className }: C
             </div>
 
             <div className="flex h-full items-center justify-center p-6 pt-16">
-              <CardRenderer cardData={card} side="front" className="h-full w-full" />
+              <CardRenderer cardData={card} template={template} side="front" className="h-full w-full" />
             </div>
           </div>
         </div>
@@ -53,7 +54,7 @@ export function CardFace({ card, isFlipped, onClick, isAnimating, className }: C
             </div>
 
             <div className="flex h-full items-center justify-center p-6 pt-16">
-              <CardRenderer cardData={card} side="back" className="h-full w-full" />
+              <CardRenderer cardData={card} template={template} side="back" className="h-full w-full" />
             </div>
           </div>
         </div>

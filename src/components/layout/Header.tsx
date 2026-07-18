@@ -2,8 +2,9 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { cn } from '@/lib/utils'
+import { getSupabaseBrowserClient, isSupabaseEnabled } from '@/lib/supabase/client'
 
 const NAV_ITEMS = [
   { href: '/', label: 'ホーム' },
@@ -13,10 +14,19 @@ const NAV_ITEMS = [
 
 export function Header() {
   const pathname = usePathname()
+  const router = useRouter()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   const isActive = (href: string) =>
     href === '/' ? pathname === '/' : pathname.startsWith(href)
+
+  const handleSignOut = async () => {
+    const supabase = getSupabaseBrowserClient()
+    if (!supabase) return
+    await supabase.auth.signOut()
+    router.push('/login')
+    router.refresh()
+  }
 
   return (
     <>
@@ -42,6 +52,17 @@ export function Header() {
               </Link>
             </li>
           ))}
+          {isSupabaseEnabled() && (
+            <li>
+              <button
+                type="button"
+                onClick={handleSignOut}
+                className="text-xs tracking-wide text-secondary transition-colors duration-quick hover:text-primary"
+              >
+                ログアウト
+              </button>
+            </li>
+          )}
         </ul>
 
         {/* Mobile Menu Button */}
@@ -102,6 +123,20 @@ export function Header() {
                 </Link>
               </li>
             ))}
+            {isSupabaseEnabled() && (
+              <li>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setIsMobileMenuOpen(false)
+                    handleSignOut()
+                  }}
+                  className="block text-lg tracking-wide text-secondary transition-colors duration-quick hover:text-primary"
+                >
+                  ログアウト
+                </button>
+              </li>
+            )}
           </ul>
         </div>
       )}

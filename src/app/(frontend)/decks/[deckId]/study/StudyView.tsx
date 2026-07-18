@@ -130,6 +130,7 @@ export function StudyView({ deckId }: StudyViewProps) {
         <div className="w-full max-w-4xl">
           <CardViewer
             card={currentCard}
+            template={deck.template}
             cardIndex={currentCardIndex}
             totalCards={totalCards}
             isFlipped={flippedCards.has(currentCardIndex)}

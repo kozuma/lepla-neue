@@ -70,4 +70,49 @@ export const ARCHETYPE_SEEDS = [
     ],
     artwork: '/archetypes/archetype-scientist.svg',
   },
+  // --- 以下2種はアートワーク先行分の定義【原案】。文言は Hiroshi のレビューを経て確定する ---
+  {
+    slug: 'explorer',
+    name: '探検家',
+    nameEn: 'THE EXPLORER',
+    rarity: 'common' as const,
+    subtitle: '未知の地平へ踏み出す',
+    description:
+      'まだ見ぬ世界に心を惹かれ、自らの足で確かめようとする人。\n好奇心と勇気で、地図の外側へと歩みを進めます。',
+    historicalFigures: [
+      { name: '伊能忠敬', description: '55歳から日本全土を歩き、実測の地図を作り上げた' },
+      { name: 'マゼラン', description: '世界周航で地球の広がりを証明' },
+      { name: 'アメリア・イアハート', description: '大西洋単独横断飛行で空の未知に挑んだ' },
+    ],
+    relatedFields: ['地理', '歴史', '語学', '文化人類学'],
+    qualities: ['踏み出す', '確かめる', '出会う', '地図を描く'],
+    growthStages: [
+      { stage: 0, title: '旅立つ者', description: '最初の一歩を踏み出した', milestone: '旅の始まり' },
+      { stage: 1, title: '道を行く者', description: '未知への歩みを続けている', milestone: '続く足あと' },
+      { stage: 2, title: '探検家', description: '自らの地図を描く者となった', milestone: '新たな地平' },
+    ],
+    artwork: '/archetypes/archetype-explorer.svg',
+  },
+  {
+    slug: 'sage',
+    name: '賢者',
+    nameEn: 'THE SAGE',
+    rarity: 'common' as const,
+    subtitle: '知を集め、意味を結ぶ',
+    description:
+      '学びを蓄え、それらを結びつけて智慧へと昇華させる人。\n静かな時間の中で、知識は理解へと熟していきます。',
+    historicalFigures: [
+      { name: '孔子', description: '学びと徳を結び、後世に道を示した' },
+      { name: 'ヒュパティア', description: '古代アレクサンドリアで数学と哲学を講じた' },
+      { name: '空海', description: '諸学を修め、思想と実践を結んだ' },
+    ],
+    relatedFields: ['古典', '宗教学', '文学', '思想史'],
+    qualities: ['蓄える', '結びつける', '熟成させる', '伝える'],
+    growthStages: [
+      { stage: 0, title: '学びの徒', description: '智慧への道を歩み始めた', milestone: '旅の始まり' },
+      { stage: 1, title: '識る者', description: '知を結び続けている', milestone: '深まる理解' },
+      { stage: 2, title: '賢者', description: '智慧を灯す者となった', milestone: '結ばれた智' },
+    ],
+    artwork: '/archetypes/archetype-sage.svg',
+  },
 ]
