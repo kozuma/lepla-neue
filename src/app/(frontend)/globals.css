@@ -1,0 +1,313 @@
+/* ============================================================
+   Lepla Design Tokens — globals.css
+   コンセプト: 「静かな美術館」
+   紙と墨を基調に、金泥写経のような落ち着いた金を一点だけ。
+   神秘性は色の暗さではなく、書体・字間・余白で表現する。
+   すべての色・余白・書体はここから派生させる。
+
+   Tailwind v4 構成:
+   - 生の値は :root のCSS変数(Raw Palette / Semantic Tokens)
+   - ユーティリティ生成は @theme / @theme inline / @utility
+   - tailwind.config.js は使わない(v4)。トークン変更はこのファイルで行う
+   ============================================================ */
+
+@import "tailwindcss";
+
+/* ------------------------------------------------------------
+   1. Raw Palette（原色定義 — 直接使わない。semantic経由で使う）
+   ------------------------------------------------------------ */
+:root {
+  /* 基調 — 白ではなく、生成りの紙 */
+  --raw-kinari: #f4f1e8;     /* 生成り: 最背面(展示室の壁) */
+  --raw-gofun: #fbf9f3;      /* 胡粉: カード・サーフェス(一枚の紙) */
+  --raw-gofun-raised: #ffffff; /* 浮き上がったサーフェス */
+
+  /* 文字 — 黒ではなく、墨 */
+  --raw-sumi: #2a2833;       /* 墨: 主要テキスト(わずかに藍を含む) */
+  --raw-nibiiro: #6e6a78;    /* 鈍色: 補助テキスト */
+  --raw-usunibi: #a5a1ad;    /* 薄鈍: 無効状態・最弱テキスト */
+
+  /* アクセント — 金茶。紙の上に置く落ち着いた金。希少に使う */
+  --raw-kincha: #8f7340;     /* 金茶: 唯一の主アクセント */
+  --raw-kincha-deep: #755e33; /* hover時の金(明るくせず深める) */
+  --raw-ake: #9c4a42;        /* 緋: 特別な瞬間のみ(レア解放など) */
+
+  /* 線 — 境界線は描かず、にじませる */
+  --raw-hairline: rgba(42, 40, 51, 0.10);
+  --raw-hairline-strong: rgba(42, 40, 51, 0.22);
+
+  /* アーキタイプ色 — 彩度を揃えた伝統色。アイコン・差し色専用 */
+  --archetype-thinker: #5c6a88;   /* 思想家: 青鈍(あおにび) */
+  --archetype-creator: #a04b42;   /* 創作家: 茜(あかね) */
+  --archetype-scientist: #4e7e70; /* 科学者: 緑青(ろくしょう) */
+  --archetype-explorer: #a1763c;  /* 探求者: 琥珀(こはく) */
+  --archetype-sage: #6b5a90;      /* 賢者: 江戸紫 */
+}
+
+/* 夜のパレット(将来のダークテーマ用に保管。現在は未使用) */
+[data-theme='night'] {
+  --raw-kinari: #12131d;
+  --raw-gofun: #1a1c2c;
+  --raw-gofun-raised: #232639;
+  --raw-sumi: #e9e2d0;
+  --raw-nibiiro: #9c97a8;
+  --raw-usunibi: #6b6678;
+  --raw-kincha: #c9a86a;
+  --raw-kincha-deep: #ddbe85;
+  --raw-hairline: rgba(233, 226, 208, 0.12);
+  --raw-hairline-strong: rgba(233, 226, 208, 0.24);
+}
+
+/* ------------------------------------------------------------
+   2. Semantic Tokens（意味で使う層。UIコードはこちらだけ参照）
+   ------------------------------------------------------------ */
+:root,
+[data-theme='night'] {
+  --bg-base: var(--raw-kinari);
+  --bg-surface: var(--raw-gofun);
+  --bg-raised: var(--raw-gofun-raised);
+
+  --text-primary: var(--raw-sumi);
+  --text-secondary: var(--raw-nibiiro);
+  --text-disabled: var(--raw-usunibi);
+  --text-on-accent: #fbf9f3; /* 金ボタン上の文字は胡粉色 */
+
+  --accent: var(--raw-kincha);
+  --accent-hover: var(--raw-kincha-deep);
+  --accent-rare: var(--raw-ake);
+
+  --border-subtle: var(--raw-hairline);
+  --border-strong: var(--raw-hairline-strong);
+}
+
+/* ------------------------------------------------------------
+   3. Typography（書体の使い分けは STYLE_GUIDE.md 参照）
+   実フォントは next/font が --font-noto-serif-jp / --font-noto-sans-jp /
+   --font-cormorant を注入する(app/layout.tsx)。ここでは積み方だけ決める。
+   ------------------------------------------------------------ */
+:root {
+  --font-ceremonial: var(--font-noto-serif-jp, 'Noto Serif JP'), 'Hiragino Mincho ProN', serif;
+  --font-functional: var(--font-noto-sans-jp, 'Noto Sans JP'), 'Hiragino Kaku Gothic ProN', sans-serif;
+  --font-latin-display: var(--font-cormorant, 'Cormorant Garamond'), 'Noto Serif JP', serif;
+}
+
+/* ------------------------------------------------------------
+   4. Space / Motion（カスタムCSSから参照する生値）
+   ------------------------------------------------------------ */
+:root {
+  /* 余白(4pxベース)。儀式的画面では大きい値を惜しまない
+     Tailwindの標準スケールと一致する(--space-4 = p-4 = 1rem) */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;   /* 儀式的画面の上下余白 */
+  --space-32: 8rem;
+
+  /* 動きは少なく、遅く、意味のある瞬間にだけ */
+  --duration-quick: 200ms;      /* hover, タップ反応 */
+  --duration-calm: 400ms;       /* 画面内遷移、カード送り */
+  --duration-ceremonial: 900ms; /* 成長・解放などの演出 */
+}
+
+/* ------------------------------------------------------------
+   5. Tailwind Theme（トークン → ユーティリティのマッピング）
+   色は semantic 変数を参照するので inline で展開する
+   ------------------------------------------------------------ */
+@theme inline {
+  /* 背景: bg-base / bg-surface / bg-raised */
+  --color-base: var(--bg-base);
+  --color-surface: var(--bg-surface);
+  --color-raised: var(--bg-raised);
+
+  /* テキスト: text-primary / text-secondary / text-disabled / text-on-accent */
+  --color-primary: var(--text-primary);
+  --color-secondary: var(--text-secondary);
+  --color-disabled: var(--text-disabled);
+  --color-on-accent: var(--text-on-accent);
+
+  /* アクセント: bg-accent / bg-accent-hover / text-accent-rare */
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-rare: var(--accent-rare);
+
+  /* 境界線: border-line / border-line-strong */
+  --color-line: var(--border-subtle);
+  --color-line-strong: var(--border-strong);
+
+  /* アーキタイプ色(アイコン・差し色専用。面で塗らない) */
+  --color-archetype-thinker: var(--archetype-thinker);
+  --color-archetype-creator: var(--archetype-creator);
+  --color-archetype-scientist: var(--archetype-scientist);
+  --color-archetype-explorer: var(--archetype-explorer);
+  --color-archetype-sage: var(--archetype-sage);
+}
+
+@theme {
+  /* 型スケール(1.25倍率ベース)。text-xl 以上は見出し用に行間を締める */
+  --text-xs: 0.75rem;      /* 12px: キャプション・メタ情報 */
+  --text-xs--line-height: 1.4;
+  --text-sm: 0.875rem;     /* 14px: 補助テキスト */
+  --text-sm--line-height: 1.8;
+  --text-base: 1rem;       /* 16px: 本文 */
+  --text-base--line-height: 1.8;
+  --text-lg: 1.125rem;     /* 18px: 強調本文・カード見出し */
+  --text-lg--line-height: 1.8;
+  --text-xl: 1.375rem;     /* 22px: セクション見出し */
+  --text-xl--line-height: 1.4;
+  --text-2xl: 1.75rem;     /* 28px: 画面タイトル */
+  --text-2xl--line-height: 1.4;
+  --text-3xl: 2.25rem;     /* 36px: 儀式的画面の主文 */
+  --text-3xl--line-height: 1.4;
+  --text-4xl: 3rem;        /* 48px: アーキタイプ名など最大級 */
+  --text-4xl--line-height: 1.4;
+
+  /* 字間 — 儀式的テキストは広く、機能的テキストは標準 */
+  --tracking-ceremonial: 0.08em;
+  --tracking-wide: 0.16em;       /* ラテン語ラベル用 */
+  --tracking-normal: 0.02em;
+
+  /* 行間 — 余白は沈黙。詰めない */
+  --leading-ceremonial: 2.0;
+  --leading-body: 1.8;
+  --leading-tight: 1.4;
+
+  /* 角丸 — カードはタロット札の比率と丸みを意識 */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-card: 14px;
+
+  /* 影 — 光は高窓からの自然光。紙が壁からわずかに浮く程度 */
+  --shadow-card: 0 1px 2px rgba(42, 40, 51, 0.05), 0 6px 20px rgba(42, 40, 51, 0.07);
+  --shadow-raised: 0 2px 6px rgba(42, 40, 51, 0.08), 0 12px 32px rgba(42, 40, 51, 0.10);
+  --shadow-glow-gold: 0 0 0 1px rgba(143, 115, 64, 0.25), 0 0 28px rgba(143, 115, 64, 0.18); /* 成長・解放の瞬間のみ */
+
+  /* イージング: ease-standard / ease-ceremonial */
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-ceremonial: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* 儀式的画面のコンテンツ幅上限(max-w-ceremonial) */
+  --container-ceremonial: 30rem; /* 480px */
+}
+
+/* 書体・動きのユーティリティ(:root の変数を参照するため @utility で定義) */
+@utility font-ceremonial {
+  font-family: var(--font-ceremonial);
+}
+@utility font-functional {
+  font-family: var(--font-functional);
+}
+@utility font-latin {
+  font-family: var(--font-latin-display);
+}
+@utility duration-quick {
+  transition-duration: var(--duration-quick);
+}
+@utility duration-calm {
+  transition-duration: var(--duration-calm);
+}
+@utility duration-ceremonial {
+  transition-duration: var(--duration-ceremonial);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ------------------------------------------------------------
+   6. Base Styles
+   ------------------------------------------------------------ */
+html {
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  font-family: var(--font-functional);
+  font-size: 16px;
+  line-height: var(--leading-body);
+  letter-spacing: var(--tracking-normal);
+  -webkit-font-smoothing: antialiased;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background-color: var(--accent);
+  color: var(--text-on-accent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: var(--radius-sm);
+}
+
+/* ------------------------------------------------------------
+   7. Register Utilities（コピー設計の2レジスタに対応)
+   ------------------------------------------------------------ */
+.text-ceremonial {
+  font-family: var(--font-ceremonial);
+  letter-spacing: var(--tracking-ceremonial);
+  line-height: var(--leading-ceremonial);
+  font-weight: 400;
+}
+
+.text-functional {
+  font-family: var(--font-functional);
+  letter-spacing: var(--tracking-normal);
+  line-height: var(--leading-body);
+}
+
+/* ラテン語の小ラベル(例: "Lepla", "Archetype")用 */
+.text-latin-label {
+  font-family: var(--font-latin-display);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+}
+
+/* ------------------------------------------------------------
+   8. 3Dカード用ユーティリティ（学習画面のカード反転で使用）
+   ------------------------------------------------------------ */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.transform-style-preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}

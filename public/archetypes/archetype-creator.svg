@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" role="img">
+<title>創作家 — The creator</title>
+<desc>放射する星の下、茜色の衣の人物が画架のカンバスに筆を伸ばすタロット様式のカード</desc>
+<g transform="translate(-180,-28)">
+<rect x="180.5" y="28.5" width="319" height="511" fill="#f3efe4" stroke="#8f7340" stroke-width="1" rx="4"/>
+<rect x="192" y="40" width="296" height="488" fill="none" stroke="#8f7340" stroke-width="0.5" rx="2"/>
+<path d="M186 30.5 L189.5 34 L186 37.5 L182.5 34 Z" fill="#8f7340"/>
+<path d="M494 30.5 L497.5 34 L494 37.5 L490.5 34 Z" fill="#8f7340"/>
+<path d="M186 530.5 L189.5 534 L186 537.5 L182.5 534 Z" fill="#8f7340"/>
+<path d="M494 530.5 L497.5 534 L494 537.5 L490.5 534 Z" fill="#8f7340"/>
+<text x="340" y="70" text-anchor="middle" font-family="'Cormorant Garamond','Noto Serif JP',serif" font-size="13" fill="#8f7340" letter-spacing="3">II</text>
+<path d="M232 452 L232 250 C232 170 290 130 340 130 C390 130 448 170 448 250 L448 452 Z" fill="#e9e3d1"/>
+<line x1="200" y1="452" x2="480" y2="452" stroke="#d4cbb2" stroke-width="0.75"/>
+<circle cx="272" cy="178" r="18" fill="#cfb47b"/>
+<line x1="272" y1="150" x2="272" y2="158" stroke="#b59458" stroke-width="1"/>
+<line x1="272" y1="198" x2="272" y2="206" stroke="#b59458" stroke-width="1"/>
+<line x1="244" y1="178" x2="252" y2="178" stroke="#b59458" stroke-width="1"/>
+<line x1="292" y1="178" x2="300" y2="178" stroke="#b59458" stroke-width="1"/>
+<line x1="252" y1="158" x2="258" y2="164" stroke="#b59458" stroke-width="0.75"/>
+<line x1="286" y1="192" x2="292" y2="198" stroke="#b59458" stroke-width="0.75"/>
+<line x1="292" y1="158" x2="286" y2="164" stroke="#b59458" stroke-width="0.75"/>
+<line x1="258" y1="192" x2="252" y2="198" stroke="#b59458" stroke-width="0.75"/>
+<path d="M408 148 L411 151 L408 154 L405 151 Z" fill="#b59458"/>
+<path d="M430 230 L433 233 L430 236 L427 233 Z" fill="#b59458"/>
+<path d="M320 152 L322.5 154.5 L320 157 L317.5 154.5 Z" fill="#b59458"/>
+<ellipse cx="330" cy="466" rx="100" ry="8" fill="#e2dac4"/>
+<line x1="362" y1="452" x2="378" y2="320" stroke="#9a9077" stroke-width="1"/>
+<line x1="412" y1="452" x2="396" y2="320" stroke="#9a9077" stroke-width="1"/>
+<line x1="368" y1="404" x2="406" y2="404" stroke="#9a9077" stroke-width="1"/>
+<rect x="356" y="252" width="64" height="86" fill="#faf7ee" stroke="#b6ad93" stroke-width="0.5"/>
+<path d="M368 318 C374 296 392 286 406 292" fill="none" stroke="#8f7340" stroke-width="1.5"/>
+<path d="M364 278 C378 270 396 272 406 282" fill="none" stroke="#a04b42" stroke-width="1.2"/>
+<path d="M294 236 C308 236 318 248 319 263 C319.5 271 318 277 314 282 L318 290 C326 305 330 318 330 330 C330 318 328 340 326 365 C325 395 326 425 328 452 L262 452 C266 420 264 380 268 345 C271 315 274 290 280 272 C274 262 277 244 294 236 Z" fill="#a04b42" stroke="#6e312b" stroke-width="0.75"/>
+<path d="M296 300 C292 340 292 400 296 452 L312 452 C308 400 308 340 312 302 Z" fill="#8a3f37"/>
+<path d="M316 292 C328 284 340 280 350 279 L352 286 C342 289 330 296 322 304 Z" fill="#8a3f37"/>
+<ellipse cx="308" cy="267" rx="8" ry="10" fill="#2a2833"/>
+<path d="M294 238 C307 239 316 250 317 264 C317.5 272 316 277 313 281" fill="none" stroke="#8f7340" stroke-width="1"/>
+<line x1="350" y1="282" x2="364" y2="275" stroke="#2a2833" stroke-width="1.5"/>
+<line x1="364" y1="275" x2="370" y2="272" stroke="#8f7340" stroke-width="2.2"/>
+<line x1="280" y1="474" x2="400" y2="474" stroke="#8f7340" stroke-width="0.5"/>
+<path d="M340 470.5 L343.5 474 L340 477.5 L336.5 474 Z" fill="#8f7340"/>
+<text x="340" y="502" text-anchor="middle" font-family="'Noto Serif JP','Hiragino Mincho ProN',serif" font-size="21" fill="#2a2833" letter-spacing="6">創作家</text>
+<text x="340" y="521" text-anchor="middle" font-family="'Cormorant Garamond','Noto Serif JP',serif" font-size="11" font-style="italic" fill="#8f7340" letter-spacing="2">The creator</text>
+</g>
+</svg>

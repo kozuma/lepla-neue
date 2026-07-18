@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" role="img">
+<title>思想家 — The thinker</title>
+<desc>アーチ窓と金の月を背に、頭巾の人物が石に腰掛けて思索するタロット様式のカード</desc>
+<g transform="translate(-180,-28)">
+<rect x="180.5" y="28.5" width="319" height="511" fill="#f3efe4" stroke="#8f7340" stroke-width="1" rx="4"/>
+<rect x="192" y="40" width="296" height="488" fill="none" stroke="#8f7340" stroke-width="0.5" rx="2"/>
+<path d="M186 30.5 L189.5 34 L186 37.5 L182.5 34 Z" fill="#8f7340"/>
+<path d="M494 30.5 L497.5 34 L494 37.5 L490.5 34 Z" fill="#8f7340"/>
+<path d="M186 530.5 L189.5 534 L186 537.5 L182.5 534 Z" fill="#8f7340"/>
+<path d="M494 530.5 L497.5 534 L494 537.5 L490.5 534 Z" fill="#8f7340"/>
+<text x="340" y="70" text-anchor="middle" font-family="'Cormorant Garamond','Noto Serif JP',serif" font-size="13" fill="#8f7340" letter-spacing="3">I</text>
+<path d="M232 452 L232 250 C232 170 290 130 340 130 C390 130 448 170 448 250 L448 452 Z" fill="#e9e3d1"/>
+<line x1="200" y1="452" x2="480" y2="452" stroke="#d4cbb2" stroke-width="0.75"/>
+<circle cx="382" cy="202" r="38" fill="none" stroke="#b59458" stroke-width="0.5"/>
+<circle cx="382" cy="202" r="32" fill="#cfb47b"/>
+<path d="M262 196 L266 200 L262 204 L258 200 Z" fill="#b59458"/>
+<path d="M300 148 L303.5 151.5 L300 155 L296.5 151.5 Z" fill="#b59458"/>
+<path d="M424 152 L427 155 L424 158 L421 155 Z" fill="#b59458"/>
+<path d="M286 252 L289 255 L286 258 L283 255 Z" fill="#b59458"/>
+<path d="M430 262 L433 265 L430 268 L427 265 Z" fill="#b59458"/>
+<path d="M346 162 L348.5 164.5 L346 167 L343.5 164.5 Z" fill="#b59458"/>
+<rect x="348" y="402" width="62" height="50" fill="#d8d1bc" stroke="#b6ad93" stroke-width="0.5"/>
+<line x1="348" y1="414" x2="410" y2="414" stroke="#b6ad93" stroke-width="0.5"/>
+<ellipse cx="338" cy="466" rx="96" ry="8" fill="#e2dac4"/>
+<path d="M333 246 C320 246 308 256 306 272 C305 280 306 287 310 292 L308 300 C300 315 290 335 286 358 C282 372 284 380 280 396 C276 420 272 440 274 452 L408 452 C404 420 398 392 396 360 C394 330 380 300 366 284 C372 268 366 252 333 246 Z" fill="#5c6a88" stroke="#3b4458" stroke-width="0.75"/>
+<path d="M340 300 C332 330 330 370 334 410 C336 430 338 444 340 452 L362 452 C356 420 352 380 354 340 C355 322 352 308 348 298 Z" fill="#4a566e"/>
+<ellipse cx="316" cy="278" rx="8" ry="10" fill="#2a2833"/>
+<path d="M333 248 C321 249 310 258 308 273 C307 281 308 287 312 291" fill="none" stroke="#8f7340" stroke-width="1"/>
+<path d="M276 448 L406 448" stroke="#8f7340" stroke-width="0.75"/>
+<g transform="rotate(-6 313 351)">
+<rect x="296" y="346" width="34" height="10" fill="#8f7340"/>
+<rect x="298" y="344" width="30" height="3" fill="#f3efe4"/>
+</g>
+<line x1="280" y1="474" x2="400" y2="474" stroke="#8f7340" stroke-width="0.5"/>
+<path d="M340 470.5 L343.5 474 L340 477.5 L336.5 474 Z" fill="#8f7340"/>
+<text x="340" y="502" text-anchor="middle" font-family="'Noto Serif JP','Hiragino Mincho ProN',serif" font-size="21" fill="#2a2833" letter-spacing="6">思想家</text>
+<text x="340" y="521" text-anchor="middle" font-family="'Cormorant Garamond','Noto Serif JP',serif" font-size="11" font-style="italic" fill="#8f7340" letter-spacing="2">The thinker</text>
+</g>
+</svg>

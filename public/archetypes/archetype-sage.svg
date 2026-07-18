@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" role="img">
+<title>賢者 — The sage</title>
+<desc>三相の月の下、江戸紫の衣の人物が正面に佇み、傍らに金の珠を戴く杖が立つタロット様式のカード</desc>
+<g transform="translate(-180,-28)">
+<rect x="180.5" y="28.5" width="319" height="511" fill="#f3efe4" stroke="#8f7340" stroke-width="1" rx="4"/>
+<rect x="192" y="40" width="296" height="488" fill="none" stroke="#8f7340" stroke-width="0.5" rx="2"/>
+<path d="M186 30.5 L189.5 34 L186 37.5 L182.5 34 Z" fill="#8f7340"/>
+<path d="M494 30.5 L497.5 34 L494 37.5 L490.5 34 Z" fill="#8f7340"/>
+<path d="M186 530.5 L189.5 534 L186 537.5 L182.5 534 Z" fill="#8f7340"/>
+<path d="M494 530.5 L497.5 534 L494 537.5 L490.5 534 Z" fill="#8f7340"/>
+<text x="340" y="70" text-anchor="middle" font-family="'Cormorant Garamond','Noto Serif JP',serif" font-size="13" fill="#8f7340" letter-spacing="3">V</text>
+<path d="M232 452 L232 250 C232 170 290 130 340 130 C390 130 448 170 448 250 L448 452 Z" fill="#e9e3d1"/>
+<line x1="200" y1="452" x2="480" y2="452" stroke="#d4cbb2" stroke-width="0.75"/>
+<circle cx="298" cy="172" r="12" fill="#cfb47b"/>
+<circle cx="303" cy="169" r="10.5" fill="#e9e3d1"/>
+<circle cx="340" cy="164" r="15" fill="#cfb47b"/>
+<circle cx="340" cy="164" r="19" fill="none" stroke="#b59458" stroke-width="0.5"/>
+<circle cx="382" cy="172" r="12" fill="#cfb47b"/>
+<circle cx="377" cy="169" r="10.5" fill="#e9e3d1"/>
+<path d="M258 214 L261 217 L258 220 L255 217 Z" fill="#b59458"/>
+<path d="M422 214 L425 217 L422 220 L419 217 Z" fill="#b59458"/>
+<path d="M270 142 L272.5 144.5 L270 147 L267.5 144.5 Z" fill="#b59458"/>
+<path d="M410 142 L412.5 144.5 L410 147 L407.5 144.5 Z" fill="#b59458"/>
+<ellipse cx="344" cy="466" rx="96" ry="8" fill="#e2dac4"/>
+<path d="M340 228 C322 229 312 243 312 260 C312 270 315 277 320 282 L316 292 C300 318 288 355 282 395 C278 422 276 440 276 452 L404 452 C404 440 402 422 398 395 C392 355 380 318 364 292 L360 282 C365 277 368 270 368 260 C368 243 358 229 340 228 Z" fill="#6b5a90" stroke="#453a60" stroke-width="0.75"/>
+<path d="M308 318 C322 310 358 310 372 318 C360 328 320 328 308 318 Z" fill="#574a78"/>
+<path d="M334 334 C332 372 332 416 334 452 L348 452 C350 416 350 372 348 334 Z" fill="#574a78"/>
+<ellipse cx="340" cy="262" rx="9" ry="11" fill="#2a2833"/>
+<path d="M320 280 C315 274 313 267 313 259 C313 245 323 231 340 230" fill="none" stroke="#8f7340" stroke-width="1"/>
+<line x1="416" y1="246" x2="416" y2="452" stroke="#6b5a47" stroke-width="2"/>
+<circle cx="416" cy="238" r="5.5" fill="#8f7340"/>
+<circle cx="416" cy="238" r="9.5" fill="none" stroke="#b59458" stroke-width="0.5"/>
+<line x1="280" y1="474" x2="400" y2="474" stroke="#8f7340" stroke-width="0.5"/>
+<path d="M340 470.5 L343.5 474 L340 477.5 L336.5 474 Z" fill="#8f7340"/>
+<text x="340" y="502" text-anchor="middle" font-family="'Noto Serif JP','Hiragino Mincho ProN',serif" font-size="21" fill="#2a2833" letter-spacing="6">賢者</text>
+<text x="340" y="521" text-anchor="middle" font-family="'Cormorant Garamond','Noto Serif JP',serif" font-size="11" font-style="italic" fill="#8f7340" letter-spacing="2">The sage</text>
+</g>
+</svg>

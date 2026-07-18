@@ -1,0 +1,21 @@
+# ローカル開発用 DB(開発憲法 §6: Postgres 1コンテナのみ)
+services:
+  db:
+    image: postgres:17-alpine
+    container_name: lepla-db
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: lepla
+    volumes:
+      - lepla-db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres -d lepla']
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  lepla-db-data:

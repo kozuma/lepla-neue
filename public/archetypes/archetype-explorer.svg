@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" role="img">
+<title>探求者 — The explorer</title>
+<desc>羅針の星の下、琥珀色の衣の人物が杖を手に歩むタロット様式のカード</desc>
+<g transform="translate(-180,-28)">
+<rect x="180.5" y="28.5" width="319" height="511" fill="#f3efe4" stroke="#8f7340" stroke-width="1" rx="4"/>
+<rect x="192" y="40" width="296" height="488" fill="none" stroke="#8f7340" stroke-width="0.5" rx="2"/>
+<path d="M186 30.5 L189.5 34 L186 37.5 L182.5 34 Z" fill="#8f7340"/>
+<path d="M494 30.5 L497.5 34 L494 37.5 L490.5 34 Z" fill="#8f7340"/>
+<path d="M186 530.5 L189.5 534 L186 537.5 L182.5 534 Z" fill="#8f7340"/>
+<path d="M494 530.5 L497.5 534 L494 537.5 L490.5 534 Z" fill="#8f7340"/>
+<text x="340" y="70" text-anchor="middle" font-family="'Cormorant Garamond','Noto Serif JP',serif" font-size="13" fill="#8f7340" letter-spacing="3">IV</text>
+<path d="M232 452 L232 250 C232 170 290 130 340 130 C390 130 448 170 448 250 L448 452 Z" fill="#e9e3d1"/>
+<line x1="200" y1="452" x2="480" y2="452" stroke="#d4cbb2" stroke-width="0.75"/>
+<path d="M276 148 L281 176 L276 204 L271 176 Z" fill="#cfb47b" stroke="#b59458" stroke-width="0.5"/>
+<path d="M248 176 L276 171 L304 176 L276 181 Z" fill="#cfb47b" stroke="#b59458" stroke-width="0.5"/>
+<g transform="rotate(45 276 176)">
+<path d="M276 160 L279 176 L276 192 L273 176 Z" fill="#b59458"/>
+<path d="M260 176 L276 173 L292 176 L276 179 Z" fill="#b59458"/>
+</g>
+<circle cx="276" cy="176" r="3" fill="#8f7340"/>
+<path d="M404 156 L407 159 L404 162 L401 159 Z" fill="#b59458"/>
+<path d="M428 218 L431 221 L428 224 L425 221 Z" fill="#b59458"/>
+<path d="M376 134 L378.5 136.5 L376 139 L373.5 136.5 Z" fill="#b59458"/>
+<path d="M242 250 L244.5 252.5 L242 255 L239.5 252.5 Z" fill="#b59458"/>
+<ellipse cx="316" cy="466" rx="104" ry="8" fill="#e2dac4"/>
+<path d="M310 238 C324 238 334 250 335 265 C335.5 273 334 279 330 284 L334 292 C342 308 348 328 352 350 C356 376 360 402 368 428 C371 438 374 446 376 452 L252 452 C262 444 270 432 276 416 C284 394 288 366 290 340 C292 314 294 292 296 274 C290 264 294 246 310 238 Z" fill="#a1763c" stroke="#6d4d26" stroke-width="0.75"/>
+<path d="M316 300 C314 340 316 400 322 452 L340 452 C334 400 330 345 332 305 Z" fill="#875f2e"/>
+<line x1="318" y1="290" x2="305" y2="340" stroke="#6d4d26" stroke-width="1.5"/>
+<rect x="293" y="338" width="23" height="17" rx="2" fill="#5e452a"/>
+<circle cx="304.5" cy="346" r="1.8" fill="#cfb47b"/>
+<path d="M330 296 C344 290 358 290 368 293 L368 302 C358 300 344 302 334 308 Z" fill="#875f2e"/>
+<ellipse cx="324" cy="269" rx="8" ry="10" fill="#2a2833"/>
+<path d="M310 240 C323 241 332 252 333 266 C333.5 274 332 279 329 283" fill="none" stroke="#8f7340" stroke-width="1"/>
+<line x1="372" y1="256" x2="388" y2="452" stroke="#6b5a47" stroke-width="2"/>
+<path d="M372 242 L377 250 L372 258 L367 250 Z" fill="#8f7340"/>
+<line x1="280" y1="474" x2="400" y2="474" stroke="#8f7340" stroke-width="0.5"/>
+<path d="M340 470.5 L343.5 474 L340 477.5 L336.5 474 Z" fill="#8f7340"/>
+<text x="340" y="502" text-anchor="middle" font-family="'Noto Serif JP','Hiragino Mincho ProN',serif" font-size="21" fill="#2a2833" letter-spacing="6">探求者</text>
+<text x="340" y="521" text-anchor="middle" font-family="'Cormorant Garamond','Noto Serif JP',serif" font-size="11" font-style="italic" fill="#8f7340" letter-spacing="2">The explorer</text>
+</g>
+</svg>

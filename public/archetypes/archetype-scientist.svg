@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" role="img">
+<title>科学者 — The scientist</title>
+<desc>環をまとう惑星の下、緑青色の衣の人物が両手で金の天球を抱えるタロット様式のカード</desc>
+<g transform="translate(-180,-28)">
+<rect x="180.5" y="28.5" width="319" height="511" fill="#f3efe4" stroke="#8f7340" stroke-width="1" rx="4"/>
+<rect x="192" y="40" width="296" height="488" fill="none" stroke="#8f7340" stroke-width="0.5" rx="2"/>
+<path d="M186 30.5 L189.5 34 L186 37.5 L182.5 34 Z" fill="#8f7340"/>
+<path d="M494 30.5 L497.5 34 L494 37.5 L490.5 34 Z" fill="#8f7340"/>
+<path d="M186 530.5 L189.5 534 L186 537.5 L182.5 534 Z" fill="#8f7340"/>
+<path d="M494 530.5 L497.5 534 L494 537.5 L490.5 534 Z" fill="#8f7340"/>
+<text x="340" y="70" text-anchor="middle" font-family="'Cormorant Garamond','Noto Serif JP',serif" font-size="13" fill="#8f7340" letter-spacing="3">III</text>
+<path d="M232 452 L232 250 C232 170 290 130 340 130 C390 130 448 170 448 250 L448 452 Z" fill="#e9e3d1"/>
+<line x1="200" y1="452" x2="480" y2="452" stroke="#d4cbb2" stroke-width="0.75"/>
+<circle cx="398" cy="176" r="22" fill="#cfb47b"/>
+<ellipse cx="398" cy="176" rx="40" ry="11" fill="none" stroke="#b59458" stroke-width="0.75" transform="rotate(-20 398 176)"/>
+<circle cx="362" cy="190" r="3.5" fill="#b59458"/>
+<path d="M276 160 L279.5 163.5 L276 167 L272.5 163.5 Z" fill="#b59458"/>
+<path d="M300 210 L303 213 L300 216 L297 213 Z" fill="#b59458"/>
+<path d="M254 234 L256.5 236.5 L254 239 L251.5 236.5 Z" fill="#b59458"/>
+<path d="M338 148 L340.5 150.5 L338 153 L335.5 150.5 Z" fill="#b59458"/>
+<ellipse cx="340" cy="466" rx="92" ry="8" fill="#e2dac4"/>
+<path d="M340 232 C322 233 312 247 312 264 C312 274 315 281 320 286 L318 296 C306 318 298 350 296 385 C294 415 294 435 296 452 L384 452 C386 435 386 415 384 385 C382 350 374 318 362 296 L360 286 C365 281 368 274 368 264 C368 247 358 233 340 232 Z" fill="#4e7e70" stroke="#335448" stroke-width="0.75"/>
+<path d="M332 352 C330 384 330 422 332 452 L350 452 C352 422 352 384 350 352 Z" fill="#3f6a5e"/>
+<path d="M316 298 C318 314 326 324 334 328 L330 338 C318 332 310 318 308 304 Z" fill="#3f6a5e"/>
+<path d="M364 298 C362 314 354 324 346 328 L350 338 C362 332 370 318 372 304 Z" fill="#3f6a5e"/>
+<ellipse cx="340" cy="266" rx="9" ry="11" fill="#2a2833"/>
+<path d="M320 284 C315 278 313 271 313 263 C313 249 323 236 340 234" fill="none" stroke="#8f7340" stroke-width="1"/>
+<circle cx="340" cy="332" r="13" fill="#8f7340"/>
+<ellipse cx="340" cy="332" rx="21" ry="6.5" fill="none" stroke="#b59458" stroke-width="0.75" transform="rotate(-18 340 332)"/>
+<line x1="280" y1="474" x2="400" y2="474" stroke="#8f7340" stroke-width="0.5"/>
+<path d="M340 470.5 L343.5 474 L340 477.5 L336.5 474 Z" fill="#8f7340"/>
+<text x="340" y="502" text-anchor="middle" font-family="'Noto Serif JP','Hiragino Mincho ProN',serif" font-size="21" fill="#2a2833" letter-spacing="6">科学者</text>
+<text x="340" y="521" text-anchor="middle" font-family="'Cormorant Garamond','Noto Serif JP',serif" font-size="11" font-style="italic" fill="#8f7340" letter-spacing="2">The scientist</text>
+</g>
+</svg>
