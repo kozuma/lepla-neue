@@ -13,6 +13,9 @@ pnpm dev               # http://localhost:3000 / 管理画面 http://localhost:3
 
 Node は `.node-version` で固定。環境変数は `.env.example` をコピーして `.env` を作る。
 
+初回は `pnpm db:reset && pnpm db:seed` でシード(アーキタイプ3種・サンプルデッキ)を投入する。
+ローカルの管理画面ログインは `admin@lepla.local` / `lepla-admin`(シードが作成、開発専用)。
+
 ## よく使うコマンド
 
 | コマンド | 内容 |

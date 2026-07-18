@@ -7,6 +7,10 @@ import sharp from 'sharp'
 
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
+import { Archetypes } from './collections/Archetypes'
+import { CardTemplates } from './collections/CardTemplates'
+import { Decks } from './collections/Decks'
+import { Cards } from './collections/Cards'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -25,7 +29,7 @@ export default buildConfig({
     // /api は Route Handlers(ビジネスロジック)の領域。Payload の REST は分離する
     api: '/payload-api',
   },
-  collections: [Users, Media],
+  collections: [Users, Media, Archetypes, CardTemplates, Decks, Cards],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

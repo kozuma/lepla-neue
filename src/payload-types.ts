@@ -69,6 +69,10 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
+    archetypes: Archetype;
+    'card-templates': CardTemplate;
+    decks: Deck;
+    cards: Card;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -78,6 +82,10 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    archetypes: ArchetypesSelect<false> | ArchetypesSelect<true>;
+    'card-templates': CardTemplatesSelect<false> | CardTemplatesSelect<true>;
+    decks: DecksSelect<false> | DecksSelect<true>;
+    cards: CardsSelect<false> | CardsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -163,6 +171,148 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "archetypes".
+ */
+export interface Archetype {
+  id: number;
+  /**
+   * 安定スラッグ(thinker 等)。投票・UIの外部キーになるため変更しない
+   */
+  slug: string;
+  /**
+   * 「思想家」など
+   */
+  name: string;
+  /**
+   * THE THINKER など(ラテン語小ラベル表示用)
+   */
+  nameEn: string;
+  rarity: 'common' | 'rare' | 'epic' | 'legendary';
+  /**
+   * 「物事の本質を見抜く」など
+   */
+  subtitle: string;
+  /**
+   * 儀式的レジスターの描写文
+   */
+  description: string;
+  historicalFigures?:
+    | {
+        name: string;
+        description: string;
+        id?: string | null;
+      }[]
+    | null;
+  relatedFields?:
+    | {
+        value: string;
+        id?: string | null;
+      }[]
+    | null;
+  qualities?:
+    | {
+        value: string;
+        id?: string | null;
+      }[]
+    | null;
+  growthStages?:
+    | {
+        stage: number;
+        /**
+         * 称号(「問いを持つ者」など)
+         */
+        title: string;
+        description: string;
+        /**
+         * 詩的表現。実際の昇格条件は書かない(秘匿)
+         */
+        milestone: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * カードアートワークのパス(/archetypes/archetype-thinker.svg 等)
+   */
+  artwork: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "card-templates".
+ */
+export interface CardTemplate {
+  id: number;
+  name: string;
+  description?: string | null;
+  /**
+   * {{variable}} プレースホルダを含むHTML(デザイントークンのクラスを使う)
+   */
+  content: string;
+  variables: {
+    /**
+     * content 内の {{name}} と一致させる
+     */
+    name: string;
+    type: 'string' | 'number' | 'boolean' | 'date';
+    isRequired?: boolean | null;
+    placeholder?: string | null;
+    description?: string | null;
+    id?: string | null;
+  }[];
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "decks".
+ */
+export interface Deck {
+  id: number;
+  name: string;
+  description?: string | null;
+  /**
+   * 学習者向け一覧には published のみ出す(旧実装の「飾りステータス」を繰り返さない)
+   */
+  status: 'draft' | 'published';
+  level?: ('easy' | 'medium' | 'hard') | null;
+  cardTemplate: number | CardTemplate;
+  archetypeAlignment: {
+    primary: number | Archetype;
+    secondary?: (number | Archetype)[] | null;
+  };
+  /**
+   * ローカルでは public/ 配下、本番は R2(後続フェーズ)
+   */
+  image?: (number | null) | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "cards".
+ */
+export interface Card {
+  id: number;
+  deck: number | Deck;
+  label: string;
+  /**
+   * デッキ内の表示順
+   */
+  order: number;
+  values: {
+    /**
+     * テンプレートの variables.name と一致させる
+     */
+    variable: string;
+    value: string;
+    id?: string | null;
+  }[];
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -192,6 +342,22 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'media';
         value: number | Media;
+      } | null)
+    | ({
+        relationTo: 'archetypes';
+        value: number | Archetype;
+      } | null)
+    | ({
+        relationTo: 'card-templates';
+        value: number | CardTemplate;
+      } | null)
+    | ({
+        relationTo: 'decks';
+        value: number | Deck;
+      } | null)
+    | ({
+        relationTo: 'cards';
+        value: number | Card;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -274,6 +440,108 @@ export interface MediaSelect<T extends boolean = true> {
   height?: T;
   focalX?: T;
   focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "archetypes_select".
+ */
+export interface ArchetypesSelect<T extends boolean = true> {
+  slug?: T;
+  name?: T;
+  nameEn?: T;
+  rarity?: T;
+  subtitle?: T;
+  description?: T;
+  historicalFigures?:
+    | T
+    | {
+        name?: T;
+        description?: T;
+        id?: T;
+      };
+  relatedFields?:
+    | T
+    | {
+        value?: T;
+        id?: T;
+      };
+  qualities?:
+    | T
+    | {
+        value?: T;
+        id?: T;
+      };
+  growthStages?:
+    | T
+    | {
+        stage?: T;
+        title?: T;
+        description?: T;
+        milestone?: T;
+        id?: T;
+      };
+  artwork?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "card-templates_select".
+ */
+export interface CardTemplatesSelect<T extends boolean = true> {
+  name?: T;
+  description?: T;
+  content?: T;
+  variables?:
+    | T
+    | {
+        name?: T;
+        type?: T;
+        isRequired?: T;
+        placeholder?: T;
+        description?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "decks_select".
+ */
+export interface DecksSelect<T extends boolean = true> {
+  name?: T;
+  description?: T;
+  status?: T;
+  level?: T;
+  cardTemplate?: T;
+  archetypeAlignment?:
+    | T
+    | {
+        primary?: T;
+        secondary?: T;
+      };
+  image?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "cards_select".
+ */
+export interface CardsSelect<T extends boolean = true> {
+  deck?: T;
+  label?: T;
+  order?: T;
+  values?:
+    | T
+    | {
+        variable?: T;
+        value?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
