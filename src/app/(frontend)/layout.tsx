@@ -3,6 +3,10 @@ import { Noto_Sans_JP, Noto_Serif_JP, Cormorant_Garamond } from 'next/font/googl
 import React from 'react'
 import './globals.css'
 
+import { Footer } from '@/components/layout/Footer'
+import { Header } from '@/components/layout/Header'
+import { Providers } from './providers'
+
 // 機能的レジスタ(本文)フォント → globals.css の --font-functional
 const notoSansJP = Noto_Sans_JP({
   weight: ['400', '500'],
@@ -45,7 +49,13 @@ export default function RootLayout({
       className={`${notoSansJP.variable} ${notoSerifJP.variable} ${cormorantGaramond.variable}`}
     >
       <body className="min-h-screen bg-base text-primary">
-        <main className="flex min-h-screen flex-col">{children}</main>
+        <Providers>
+          <div className="flex min-h-screen flex-col">
+            <Header />
+            <main className="flex flex-1 flex-col">{children}</main>
+            <Footer />
+          </div>
+        </Providers>
       </body>
     </html>
   )

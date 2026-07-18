@@ -4,6 +4,77 @@
  * 昇格しきい値は隠しパラメータ(二層構造)。APIレスポンス・UIに露出しないこと(憲法 §3-4)。
  */
 
+import type { VoteStrengthParams } from '@/types/vote'
+
+/**
+ * 完了した学習セッションから投票強度パラメータを導出する。
+ * strength はクライアントに自己申告させず、生メタデータからサーバーで計算する(設計書 §4.2)
+ */
+export function deriveVoteParams(
+  session: {
+    startedAt: Date
+    endedAt: Date
+    cardsStudied: number
+    flippedCards: number
+  },
+  isConsecutiveDay: boolean,
+): VoteStrengthParams {
+  const durationSeconds = Math.max(
+    0,
+    (session.endedAt.getTime() - session.startedAt.getTime()) / 1000,
+  )
+  const hour = session.endedAt.getHours()
+  return {
+    sessionDuration: durationSeconds / 60, // 分
+    cardsStudied: session.cardsStudied,
+    averageCardTime: session.cardsStudied > 0 ? durationSeconds / session.cardsStudied : 0, // 秒
+    flippedCards: session.flippedCards,
+    isConsecutiveDay,
+    timeOfDay: hour < 6 ? 'night' : hour < 12 ? 'morning' : hour < 18 ? 'afternoon' : 'evening',
+  }
+}
+
+export interface VoteRecord {
+  strength: number
+  createdAt: Date
+}
+
+/**
+ * 投票ログから user_archetypes の集計キャッシュを再計算する。
+ * ログが常に正であり、このキャッシュはいつでも作り直せる(設計書 §7)
+ */
+export function summarizeVotes(
+  votes: VoteRecord[],
+  today: Date,
+): {
+  totalVotes: number
+  qualityAvg: number
+  activeDays: number
+  currentStreak: number
+  longestStreak: number
+} {
+  const totalVotes = votes.length
+  const qualityAvg =
+    totalVotes === 0 ? 0 : votes.reduce((sum, v) => sum + v.strength, 0) / totalVotes
+  const uniqueDays = new Set(
+    votes.map((v) => {
+      const d = v.createdAt
+      return `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`
+    }),
+  )
+  const { currentStreak, longestStreak } = calculateStreak(
+    votes.map((v) => v.createdAt),
+    today,
+  )
+  return {
+    totalVotes,
+    qualityAvg,
+    activeDays: uniqueDays.size,
+    currentStreak,
+    longestStreak,
+  }
+}
+
 /**
  * 成長段階の判定(Phase 1: シンプル版)
  * 隠しパラメータに基づいて次のステージに上がれるかを判定

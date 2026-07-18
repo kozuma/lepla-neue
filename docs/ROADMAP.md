@@ -20,9 +20,21 @@
 - [x] シード実装(アーキタイプ3種 + テンプレート「英単語」+ サンプルデッキ + カード3枚 + 開発用管理ユーザー)。冪等性確認済み
 - [→] Supabase Auth は実配線を Phase 2 に後送り(Hiroshi 承認済み)。スキーマは `user_id uuid` で受け入れ準備済み
 
-## Phase 2 以降(仮)
+## Phase 2: API + フロントエンド — ✅ 完了 (2026-07-18)
 
-- [ ] Supabase Auth(学習者側認証)導入 + 開発用スタブ
-- [ ] Route Handlers(セッション・投票・進捗 API、4行構成)
-- [ ] フロントエンド移植(オンボーディング / ホーム / 学習フロー / プロフィール — FRONTEND_ASSETS.md の許可リストに従う)
-- [ ] Vercel デプロイ / Supabase 本番 / R2 接続
+- [x] 認証ヘルパー `src/lib/auth.ts`(Supabase 環境変数があれば JWT 検証、ローカルは固定開発ユーザー。本番では未設定を許さない)
+- [x] Route Handlers(4行構成):
+  - `POST /api/me/archetype`(選択・変更。再選択は no-op、変更は進捗初期化)
+  - `GET /api/me/journey`(物語層のみ: 称号・詩的表現・hasWalkedToday)
+  - `POST /api/sessions` / `POST /api/sessions/:id/complete`(strength はサーバー計算、二重完了ガード)
+  - `GET /api/archetypes` / `GET /api/decks` / `GET /api/decks/:id` / `GET /api/decks/:id/cards`
+- [x] DB オーケストレーション層 `src/db/journey.ts`(純粋関数 services と DB を接続)
+- [x] services 拡張: `deriveVoteParams` / `summarizeVotes` / `buildJourneyNarrative`(テスト34件)
+- [x] フロントエンド移植(許可リスト準拠): ホーム / オンボーディング3画面 / 書庫(一覧・詳細) / 学習フロー(Intro→カード送り→完了・昇格演出) / 旅の記録。React Query + 同一オリジン fetch。localStorage 永続は廃止しサーバーが唯一の真実
+- 補足: 旧 profile の「最近の足あと」一覧は未移植(投票履歴の露出設計を Phase 3 で検討)
+
+## Phase 3 以降(仮)
+
+- [ ] Supabase Auth 実配線(ログイン画面・middleware)+ Vercel デプロイ / Supabase 本番 / R2 接続
+- [ ] テンプレート content HTML を使ったカード本レンダリング
+- [ ] 新アーキタイプ(explorer / sage)、Stage 2 演出、VoteAction 拡充(設計書 Phase 2)
