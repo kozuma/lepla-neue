@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation'
 
 import { CardViewer } from '@/components/study/CardViewer'
 import { StudyCompletion } from '@/components/study/StudyCompletion'
-import { StudyHeader } from '@/components/study/StudyHeader'
+import { StudyExitButton } from '@/components/study/StudyExitButton'
 import { StudyIntro } from '@/components/study/StudyIntro'
 import { Button } from '@/components/ui/Button'
 import { useCards, useCompleteSession, useDeck, useStartSession } from '@/lib/hooks'
@@ -118,9 +118,8 @@ export function StudyView({ deckId }: StudyViewProps) {
   }
 
   return (
-    <div className="flex flex-1 flex-col">
-      <StudyHeader
-        deck={deck}
+    <div className="relative flex flex-1 flex-col">
+      <StudyExitButton
         currentCardIndex={currentCardIndex}
         totalCards={totalCards}
         onExit={() => router.push(`/decks/${deckId}`)}
@@ -139,7 +138,6 @@ export function StudyView({ deckId }: StudyViewProps) {
             onPrevious={handlePreviousCard}
             canGoNext={true}
             canGoPrevious={currentCardIndex > 0}
-            isLastCard={isLastCard}
           />
         </div>
       </div>
