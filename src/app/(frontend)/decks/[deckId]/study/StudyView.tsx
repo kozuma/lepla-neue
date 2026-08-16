@@ -21,7 +21,10 @@ interface StudyViewProps {
 export function StudyView({ deckId }: StudyViewProps) {
   const router = useRouter()
   const [currentCardIndex, setCurrentCardIndex] = useState(0)
+  // 表示用: 現在裏返っているカード(クリックでトグル)
   const [flippedCards, setFlippedCards] = useState(new Set<number>())
+  // 集計用: 一度でも裏を見たカード(投票メタデータ。トグルで戻しても減らさない)
+  const [revealedCards, setRevealedCards] = useState(new Set<number>())
   const [sessionId, setSessionId] = useState<string | null>(null)
   const [completionResult, setCompletionResult] = useState<SessionCompleteResponse | null>(null)
   const [isComplete, setIsComplete] = useState(false)
@@ -43,9 +46,16 @@ export function StudyView({ deckId }: StudyViewProps) {
   }
 
   const handleCardFlip = () => {
-    if (currentCard && !flippedCards.has(currentCardIndex)) {
-      setFlippedCards((prev) => new Set([...prev, currentCardIndex]))
-    }
+    if (!currentCard) return
+    // 表示は表裏トグル
+    setFlippedCards((prev) => {
+      const next = new Set(prev)
+      if (next.has(currentCardIndex)) next.delete(currentCardIndex)
+      else next.add(currentCardIndex)
+      return next
+    })
+    // 集計は一度でも裏を見たら記録(戻しても取り消さない)
+    setRevealedCards((prev) => new Set(prev).add(currentCardIndex))
   }
 
   const handleNextCard = async () => {
@@ -60,7 +70,7 @@ export function StudyView({ deckId }: StudyViewProps) {
         .mutateAsync({
           sessionId,
           cardsStudied: totalCards,
-          flippedCards: flippedCards.size,
+          flippedCards: revealedCards.size,
         })
         .catch(() => null)
       setCompletionResult(result)
@@ -76,6 +86,7 @@ export function StudyView({ deckId }: StudyViewProps) {
   const handleRestart = () => {
     setCurrentCardIndex(0)
     setFlippedCards(new Set())
+    setRevealedCards(new Set())
     setSessionId(null)
     setCompletionResult(null)
     setIsComplete(false)
