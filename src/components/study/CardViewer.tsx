@@ -17,7 +17,6 @@ interface CardViewerProps {
   onPrevious: () => void
   canGoNext: boolean
   canGoPrevious: boolean
-  isLastCard: boolean
 }
 
 export function CardViewer({
@@ -30,8 +29,7 @@ export function CardViewer({
   onNext,
   onPrevious,
   canGoNext,
-  canGoPrevious,
-  isLastCard
+  canGoPrevious
 }: CardViewerProps) {
   const [isAnimating, setIsAnimating] = useState(false)
 
@@ -88,22 +86,10 @@ export function CardViewer({
             isAnimating={isAnimating}
             className="w-full h-80 md:h-96"
           />
-
-          {/* カード操作ヒント */}
-          <div className="absolute -bottom-12 left-1/2 -translate-x-1/2">
-            <div className="space-y-1 text-center">
-              <p className="text-xs text-secondary">
-                {isFlipped ? '覚えたら次のカードへ' : 'クリックして裏面を見る'}
-              </p>
-              <p className="text-xs text-disabled">
-                スペースキー または クリック
-              </p>
-            </div>
-          </div>
         </div>
       </div>
 
-      {/* ナビゲーション */}
+      {/* ナビゲーション(index/total + ラベルなしの左右ボタンのみ) */}
       <div className="flex justify-center">
         <CardNavigation
           currentIndex={cardIndex}
@@ -112,27 +98,7 @@ export function CardViewer({
           onNext={handleNext}
           canGoPrevious={canGoPrevious}
           canGoNext={canGoNext}
-          isLastCard={isLastCard}
-          hasFlipped={isFlipped}
         />
-      </div>
-
-      {/* 操作説明 */}
-      <div className="flex justify-center">
-        <div className="grid grid-cols-1 gap-4 text-center text-xs text-secondary md:grid-cols-3">
-          <div className="flex items-center justify-center gap-1.5">
-            <kbd className="rounded-sm border border-line bg-surface px-2 py-1 text-xs">←</kbd>
-            <span>前のカード</span>
-          </div>
-          <div className="flex items-center justify-center gap-1.5">
-            <kbd className="rounded-sm border border-line bg-surface px-2 py-1 text-xs">Space</kbd>
-            <span>カードを裏返す</span>
-          </div>
-          <div className="flex items-center justify-center gap-1.5">
-            <kbd className="rounded-sm border border-line bg-surface px-2 py-1 text-xs">→</kbd>
-            <span>次のカード</span>
-          </div>
-        </div>
       </div>
     </div>
   )

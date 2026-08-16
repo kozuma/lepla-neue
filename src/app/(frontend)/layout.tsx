@@ -3,8 +3,7 @@ import { Noto_Sans_JP, Noto_Serif_JP, Cormorant_Garamond } from 'next/font/googl
 import React from 'react'
 import './globals.css'
 
-import { Footer } from '@/components/layout/Footer'
-import { Header } from '@/components/layout/Header'
+import { LayoutShell } from '@/components/layout/LayoutShell'
 import { Providers } from './providers'
 
 // 機能的レジスタ(本文)フォント → globals.css の --font-functional
@@ -50,11 +49,7 @@ export default function RootLayout({
     >
       <body className="min-h-screen bg-base text-primary">
         <Providers>
-          <div className="flex min-h-screen flex-col">
-            <Header />
-            <main className="flex flex-1 flex-col">{children}</main>
-            <Footer />
-          </div>
+          <LayoutShell>{children}</LayoutShell>
         </Providers>
       </body>
     </html>

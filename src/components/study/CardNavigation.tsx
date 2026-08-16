@@ -10,11 +10,10 @@ interface CardNavigationProps {
   onNext: () => void
   canGoPrevious: boolean
   canGoNext: boolean
-  isLastCard: boolean
-  hasFlipped: boolean
   className?: string
 }
 
+// 没入のため最小限: index/total 表示とラベルなしの左右ボタンのみ。
 export function CardNavigation({
   currentIndex,
   totalCards,
@@ -22,59 +21,39 @@ export function CardNavigation({
   onNext,
   canGoPrevious,
   canGoNext,
-  isLastCard,
-  hasFlipped,
-  className
+  className,
 }: CardNavigationProps) {
   return (
-    <div className={cn('flex items-center justify-center gap-4', className)}>
-      {/* 前へボタン */}
+    <div className={cn('flex items-center justify-center gap-6', className)}>
+      {/* 前へ */}
       <Button
-        variant="secondary"
-        size="medium"
+        variant="ghost"
+        size="small"
         onClick={onPrevious}
         disabled={!canGoPrevious}
-        className="min-w-[120px]"
+        aria-label="前のカード"
       >
-        <svg className="mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" />
         </svg>
-        前のカード
       </Button>
 
-      {/* 現在位置表示 */}
-      <div className="mx-6 min-w-[100px] text-center">
-        <div className="text-base font-medium text-primary">
-          {currentIndex + 1} / {totalCards}
-        </div>
-        <div className="text-xs text-secondary">
-          {!hasFlipped && '表面を確認してから'}
-        </div>
+      {/* 現在位置 */}
+      <div className="min-w-[64px] text-center text-base font-medium text-secondary">
+        {currentIndex + 1} / {totalCards}
       </div>
 
-      {/* 次へ／完了ボタン */}
+      {/* 次へ */}
       <Button
-        variant="primary"
-        size="medium"
+        variant="ghost"
+        size="small"
         onClick={onNext}
         disabled={!canGoNext}
-        className="min-w-[120px]"
+        aria-label="次のカード"
       >
-        {isLastCard ? (
-          <>
-            <span>学習完了</span>
-            <svg className="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 13l4 4L19 7" />
-            </svg>
-          </>
-        ) : (
-          <>
-            <span>次のカード</span>
-            <svg className="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7" />
-            </svg>
-          </>
-        )}
+        <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7" />
+        </svg>
       </Button>
     </div>
   )
